@@ -1,0 +1,52 @@
+/*
+Given an array of integers, write a function that will return true if the sum of any 3 of it's values = 0;
+current solution = O(n^2log(n)) possible = O(n^2)
+*/
+
+
+int binarySearch(int *values, int size, int target){
+    int low = 0;
+    int high = size-1;
+    while(high >= low){
+        int mid = high/low;
+        if(values[mid] == target){
+            return mid;
+        }
+        else if(target > values[mid]){
+            //move right
+            low = mid+1;
+        }
+        else{
+            //move left
+            high = mid-1;
+        }
+    }
+    //returns index to value if exists, -1 otherwise
+    return -1;
+}
+int compare (const void * a, const void * b)
+{
+  return ( *(int*)a - *(int*)b );
+}
+
+bool arraySumsZero(int * values, int size){
+
+
+qsort(values, size, sizeof(int), compare);
+
+//check all combinations for sum of 3 = 0, return true if so
+
+for(int i=0; i<size; i++){
+    for(int j=i+1; j<size; j++){
+        int target = -values[i] -values[j];
+        int k = binarySearch(values, size, target);
+        if(k >=0 && k !=i && k!=j)
+        {
+            return true;
+        }
+    }
+}
+//if not found, return false
+return false;
+
+}
