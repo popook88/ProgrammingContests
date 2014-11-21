@@ -76,10 +76,6 @@ Total number of characters in input <= 20000000.
 #include <algorithm>
 using namespace std;
 
-
-#include <iostream>
-using namespace std;
-
 //Program summary: Main does IO and calls either the Append, Remove or List functions to do actions on the buffer. Uses the empty string to signify an open buffer slot.
 
 //Summary: Appends the lines from inputStrings to buffer.
